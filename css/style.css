@@ -1,0 +1,131 @@
+body {
+    margin: 0;
+    background-color: #0d1117;
+    color: #c9d1d9;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.header {
+    background-color: #010409;
+    border-bottom: 1px solid #30363d;
+}
+
+h3 {
+    justify-self: center;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0.5rem;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb {
+    font-size: 16px;
+}
+
+.breadcrumb span {
+    color: #8b949e;
+}
+
+.header-right {
+    display: flex;
+}
+
+.fotito {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.nav-tools {
+    display: flex;
+    font-size: 14px;
+    margin-left: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.avatars {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.avatars img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 0 15px;
+}
+
+.invitation-text {
+    size: 18px;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.invitation-text a {
+    color: #2f81f7;
+    font-weight: bold;
+}
+
+.buttons {
+    margin-bottom: 1.5rem;
+}
+
+.buttons button {
+    padding: 8px 16px;
+    margin: 0;
+    border: none;
+    border-radius: 6px;
+    border: 1px solid #ffffff26;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.accept {
+    background-color: #1f6feb;
+    color: white;
+}
+
+.decline {
+    background-color: #30363d;
+    color: #c9d1d9;
+}
+
+.details {
+    text-align: left;
+    font-size: 0.9rem;
+    color: #8b949e;
+}
+
+.details a {
+    color: #2f81f7;
+}
+
+.footer {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    color: #8b949e;
+}
+
+.footer a {
+    color: #2f81f7;
+    text-decoration: none;
+}
